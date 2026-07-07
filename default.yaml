@@ -1,0 +1,32 @@
+# --- Géométrie physique -> pixels ---
+patch_size_m: 2.0          # côté physique du patch (m)
+gsd_m_per_px: 0.05         # GSD opérationnel : xView=0.30, drone basse alt ~0.05
+frame_px: 1500             # dimension frame brute capteur
+net_size: 640              # entrée détecteur
+
+# --- Cible ---
+target_class: 2            # id classe (ex. 'car' en COCO)
+conf_thresh: 0.25
+
+# --- Pertes ---
+w_det: 1.0
+w_tv: 2.5
+w_nps: 0.05
+printable_colors: []       # liste [[r,g,b], ...] en [0,1] ; vide => NPS off
+
+# --- Optimisation ---
+lr: 0.03
+iters: 1000
+batch_size: 8
+seed: 0
+device: cuda
+
+# --- EOT (à calibrer sur l'enveloppe capteur) ---
+eot:
+  rot_deg: [-20.0, 20.0]
+  scale: [0.25, 1.25]
+  perspective: 0.10
+  brightness: [-0.1, 0.1]
+  contrast: [0.8, 1.2]
+  noise_std: 0.02
+  res_degrade: [0.5, 1.0]
